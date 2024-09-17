@@ -54,20 +54,6 @@ public class UpgradeTypeBlockLimits implements IUpgradeType {
 
     private class BlockLimitsListener implements Listener {
 
-        @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
-        public void onBlockPlace(BlockPlaceEvent e) {
-            Island island = plugin.getGrid().getIslandAt(e.getBlockPlaced().getLocation());
-
-            if (island == null)
-                return;
-
-            Key blockKey = Keys.of(e.getBlock());
-
-            if (island.hasReachedBlockLimit(blockKey)) {
-                e.setCancelled(true);
-                Message.REACHED_BLOCK_LIMIT.send(e.getPlayer(), Formatters.CAPITALIZED_FORMATTER.format(blockKey.toString()));
-            }
-        }
 
         @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
         public void onCartPlace(PlayerInteractEvent e) {
